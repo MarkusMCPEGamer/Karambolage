@@ -14,17 +14,21 @@ __meta__ = {
 [node name="staticBody2D" type="StaticBody2D" parent="."]
 
 [node name="collisionShape2D" type="CollisionShape2D" parent="staticBody2D"]
+visible = false
 position = Vector2( 0, 540 )
 shape = SubResource( 1 )
 
 [node name="collisionShape2D2" type="CollisionShape2D" parent="staticBody2D"]
+visible = false
 position = Vector2( 1920, 540 )
 shape = SubResource( 1 )
 
 [node name="collisionShape2D3" type="CollisionShape2D" parent="staticBody2D"]
+visible = false
 position = Vector2( 960, 0 )
 shape = SubResource( 2 )
 
 [node name="collisionShape2D5" type="CollisionShape2D" parent="staticBody2D"]
+visible = false
 position = Vector2( 960, 1080 )
 shape = SubResource( 2 )

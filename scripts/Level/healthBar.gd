@@ -1,19 +1,28 @@
 extends ProgressBar
 
 var currHealth = 100
-
+var moved = false
+var colorChanged = false
 
 func _ready():
 	set_process(true)
  
 func _process(delta):
-	if GLOBALS.health != currHealth:
-		$Tween.interpolate_property(self, "value", currHealth, GLOBALS.health, 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	if GLOBALS.health1 != currHealth:
+		$Tween.interpolate_property(self, "value", currHealth, GLOBALS.health1, 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
 		$Tween.start()
-		currHealth = GLOBALS.health
-	if GLOBALS.health <= 20 && not GLOBALS.colorChanged:
+		currHealth = GLOBALS.health1
+	if GLOBALS.health1 <= 20 && not colorChanged:
 		$AnimationPlayer.play("changeColor")
-		GLOBALS.colorChanged = true
-	if GLOBALS.health > 20 && GLOBALS.colorChanged:
+		colorChanged = true
+	if GLOBALS.health1 > 20 && colorChanged:
 		$AnimationPlayer.play_backwards("changeColor")
-		GLOBALS.colorChanged = false
+		colorChanged = false
+	if GLOBALS.players >= 2 && not moved:
+		move()
+		moved = true
+
+func move():
+	var moveTween = $moveTween
+	moveTween.interpolate_property(self, "rect_position", get("rect_position"), Vector2(130, get("rect_position").y), 0.5, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	moveTween.start()

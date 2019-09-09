@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://scripts/Start/Start.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Background.tscn" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://themes/sideBoardTheme.tres" type="Theme" id=12]
 [ext_resource path="res://textures/whiteProgress.jpg" type="Texture" id=13]
 [ext_resource path="res://scripts/Start/mouse.gd" type="Script" id=14]
+[ext_resource path="res://scripts/Start/Restart.gd" type="Script" id=15]
+[ext_resource path="res://scenes/Restart_font.tres" type="DynamicFont" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
@@ -158,6 +160,71 @@ tracks/6/keys = {
 "values": [ false, true ]
 }
 
+[sub_resource type="DynamicFont" id=11]
+size = 64
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="DynamicFont" id=17]
+size = 35
+font_data = ExtResource( 4 )
+
+[sub_resource type="InputEventKey" id=18]
+pressed = true
+scancode = 82
+
+[sub_resource type="ShortCut" id=19]
+shortcut = SubResource( 18 )
+
+[sub_resource type="StyleBoxEmpty" id=20]
+
+[sub_resource type="StyleBoxEmpty" id=21]
+
+[sub_resource type="StyleBoxEmpty" id=22]
+
+[sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="InputEventKey" id=24]
+scancode = 69
+
+[sub_resource type="ShortCut" id=25]
+shortcut = SubResource( 24 )
+
+[sub_resource type="Animation" id=26]
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect2:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false ]
+}
+
 [node name="Start" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -170,6 +237,7 @@ __meta__ = {
 [node name="Background2" parent="." instance=ExtResource( 2 )]
 
 [node name="Splash" type="Control" parent="."]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 922, 789 )
@@ -204,6 +272,7 @@ uppercase = true
 anims/blend = SubResource( 3 )
 
 [node name="Main" type="Control" parent="."]
+editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -212,7 +281,6 @@ __meta__ = {
 }
 
 [node name="title" type="Label" parent="Main"]
-visible = false
 anchor_right = 1.0
 margin_left = 18.1051
 margin_top = 3.95336
@@ -233,37 +301,20 @@ margin_top = 248.0
 margin_bottom = 378.0
 alignment = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Main/ModeContainer"]
-
-[node name="btnPlay" parent="Main/ModeContainer/CanvasLayer" instance=ExtResource( 5 )]
+[node name="btnPlay" parent="Main/ModeContainer" instance=ExtResource( 5 )]
 margin_left = 356.0
-margin_top = 788.0
 margin_right = 756.0
-margin_bottom = 918.0
 description = "Normal"
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="Main/ModeContainer"]
-editor/display_folded = true
-
-[node name="btnPlayFast" parent="Main/ModeContainer/CanvasLayer2" instance=ExtResource( 5 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = 248.0
-margin_right = 200.0
-margin_bottom = 378.0
+[node name="btnPlayFast" parent="Main/ModeContainer" instance=ExtResource( 5 )]
+margin_left = 760.0
+margin_right = 1160.0
 description = "Fast"
 mode = "Fast"
 
-[node name="CanvasLayer3" type="CanvasLayer" parent="Main/ModeContainer"]
-
-[node name="btnCave" parent="Main/ModeContainer/CanvasLayer3" instance=ExtResource( 5 )]
+[node name="btnCave" parent="Main/ModeContainer" instance=ExtResource( 5 )]
 margin_left = 1164.0
-margin_top = 788.0
 margin_right = 1564.0
-margin_bottom = 918.0
 description = "Cave"
 mode = "Cave"
 
@@ -279,6 +330,7 @@ margin_bottom = 150.0
 [node name="btnPlay" parent="Main/TitleContainer" instance=ExtResource( 6 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Main"]
+editor/display_folded = true
 
 [node name="sideBoard" type="Control" parent="Main/CanvasLayer"]
 margin_left = 1920.0
@@ -294,6 +346,8 @@ margin_right = 150.0
 color = Color( 0, 0, 0, 0.588235 )
 
 [node name="btnSettings" type="Control" parent="Main/CanvasLayer/sideBoard"]
+editor/display_folded = true
+visible = false
 margin_left = -70.0
 margin_bottom = 70.0
 rect_pivot_offset = Vector2( 35, 35 )
@@ -307,6 +361,7 @@ __meta__ = {
 anims/anim = SubResource( 5 )
 
 [node name="areaButton" type="Area2D" parent="Main/CanvasLayer/sideBoard/btnSettings"]
+editor/display_folded = true
 position = Vector2( 35, 35 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Main/CanvasLayer/sideBoard/btnSettings/areaButton"]
@@ -325,6 +380,7 @@ texture = ExtResource( 9 )
 expand = true
 
 [node name="areaControl" type="Area2D" parent="Main/CanvasLayer/sideBoard"]
+editor/display_folded = true
 position = Vector2( 175, 540 )
 priority = 1.0
 
@@ -354,6 +410,7 @@ text = "Confirm close"
 align = 1
 
 [node name="btnQuit" type="Button" parent="."]
+editor/display_folded = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -391,6 +448,124 @@ shape = SubResource( 9 )
 
 [node name="animPlayer" type="AnimationPlayer" parent="."]
 anims/switch = SubResource( 10 )
+
+[node name="Restart" type="Control" parent="."]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1080.0
+margin_bottom = 1080.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Restart"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -346.5
+margin_top = -174.0
+margin_right = 353.5
+margin_bottom = 176.0
+rect_pivot_offset = Vector2( 350, 175 )
+color = Color( 0.85098, 0, 0, 1 )
+
+[node name="labelGameOver" type="Label" parent="Restart/ColorRect"]
+anchor_right = 1.0
+margin_top = 20.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 11 )
+text = "GAME OVER!"
+align = 1
+
+[node name="labelReason" type="Label" parent="Restart/ColorRect"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -64.0
+margin_bottom = -22.0
+custom_fonts/font = ExtResource( 16 )
+text = "You died!"
+align = 1
+valign = 1
+
+[node name="labelScore" type="Label" parent="Restart/ColorRect"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 4.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 16 )
+text = "Score: N/A"
+align = 1
+valign = 1
+
+[node name="btnRestart" type="Button" parent="Restart/ColorRect"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.5
+margin_top = -79.5
+margin_right = 246.5
+margin_bottom = -19.5
+focus_mode = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+custom_styles/disabled = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+shortcut = SubResource( 19 )
+text = "restart [r]"
+
+[node name="btnETMenu" type="Button" parent="Restart/ColorRect"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -345.5
+margin_top = -79.5
+margin_right = -19.5
+margin_bottom = -19.5
+focus_mode = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_styles/hover = SubResource( 20 )
+custom_styles/pressed = SubResource( 21 )
+custom_styles/focus = SubResource( 22 )
+custom_styles/disabled = SubResource( 23 )
+custom_styles/normal = SubResource( 16 )
+custom_fonts/font = SubResource( 17 )
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+shortcut = SubResource( 25 )
+text = "exit to menu [e]"
+
+[node name="ColorRect2" type="ColorRect" parent="Restart"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+mouse_default_cursor_shape = 4
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="animPlayer" type="AnimationPlayer" parent="Restart"]
+anims/fade_in = SubResource( 26 )
+
+[node name="tween" type="Tween" parent="Restart"]
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_entered"]
 [connection signal="area_shape_exited" from="Main/CanvasLayer/sideBoard/btnSettings/areaButton" to="Main/CanvasLayer/sideBoard" method="_on_Area2D_area_shape_exited"]
 [connection signal="area_shape_entered" from="Main/CanvasLayer/sideBoard/areaControl" to="Main/CanvasLayer/sideBoard" method="_on_areaControl_area_shape_entered"]
@@ -398,3 +573,6 @@ anims/switch = SubResource( 10 )
 [connection signal="toggled" from="Main/CanvasLayer/sideBoard/settingsContainer/closeConfirmationCheck" to="Main/CanvasLayer/sideBoard/settingsContainer" method="_on_closeConfirmationCheck_toggled"]
 [connection signal="pressed" from="btnQuit" to="." method="_on_btnQuit_pressed"]
 [connection signal="timeout" from="btnQuit/Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="Restart/ColorRect/btnRestart" to="Restart" method="_on_btnRestart_pressed"]
+[connection signal="pressed" from="Restart/ColorRect/btnETMenu" to="Restart" method="_on_btnETMenu_pressed"]
+[connection signal="tween_all_completed" from="Restart/tween" to="Restart" method="_on_tween_tween_all_completed"]

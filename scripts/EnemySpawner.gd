@@ -1,10 +1,9 @@
-extends Position2D
+extends Node
 
 var enemy = preload("res://enemy/Enemy.tscn")
 
 func _ready():
 	yield(get_tree(), "idle_frame")
-	if GLOBALS.fast: $timer.wait_time = 0.25
 	spawn()
 	yield(get_tree(), "idle_frame")
 	spawn()

@@ -1,10 +1,9 @@
-extends Node2D
+extends Position2D
 
-var item = preload("res://scenes/Item.tscn")
-var gun = preload("res://items/gun/gun.tscn")
+export (PackedScene) var itemScene
+var pos = Vector2()
 
-func _ready():
-	GLOBALS.powerupPos = Vector2(rand_range(100, 1820), rand_range(100, 980))
+var types = ["health", "energy"]
 
 func _on_timer_timeout():
 	$particles.emitting = false
@@ -12,10 +11,13 @@ func _on_timer_timeout():
 	$particlesTimer.start()
 
 func spawn():
-	$container.add_child(item.instance())
+	var item = itemScene.instance()
+	item.type = types[rand_range(0, 2)]
+	item.global_position = pos
+	$container.add_child(item)
 
 func _on_particlesTimer_timeout():
 	randomize()
-	GLOBALS.powerupPos = Vector2(rand_range(100, 1820), rand_range(100, 980))
-	position = GLOBALS.powerupPos
+	pos = Vector2(rand_range(100, 1820), rand_range(100, 980))
+	self.global_position = pos
 	$particles.emitting = true
