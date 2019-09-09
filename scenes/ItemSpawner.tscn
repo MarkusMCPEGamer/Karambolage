@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/ItemSpawner.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=2]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
@@ -20,8 +21,9 @@ color = Color( 0, 0.501961, 0.988235, 1 )
 hue_variation = 1.0
 hue_variation_random = 1.0
 
-[node name="ItemSpawner" type="Node2D"]
+[node name="ItemSpawner" type="Position2D"]
 script = ExtResource( 1 )
+itemScene = ExtResource( 2 )
 
 [node name="container" type="Node" parent="."]
 

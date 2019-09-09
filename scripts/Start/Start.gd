@@ -7,12 +7,19 @@ func _on_Button_button_down():
 	get_tree().change_scene("res://scenes/Level.tscn")
 
 func _ready():
+	Engine.time_scale = 1
 	GLOBALS.closeConfirmation = SETTINGS.get_setting("settings", "closeConf")
 	set_process(true)
 	$Splash/info/animPlayer.play("blend")
-	if GLOBALS.splashDone: switch()
-	GLOBALS.enemys = 0
-	GLOBALS.health = 100
+	if GLOBALS.splashDone:
+		if not GLOBALS.health1 <= 0 && not GLOBALS.health2 <= 0:
+			switch()
+	if GLOBALS.health1 <= 0 || GLOBALS.health2 <= 0:
+		$camera.position = Vector2(0, 1080)
+		get_node("Main/CanvasLayer/sideBoard/btnSettings").visible = false
+	else:
+		$camera.position = Vector2(0, 0)
+	resetGlobals()
 
 
 func _unhandled_key_input(event):
@@ -50,7 +57,15 @@ func _on_Timer_timeout():
 func switch():
 	$Main.visible = true
 	$Main/title.visible = true
-	$Main/ModeContainer/CanvasLayer/btnPlay.visible = true
-	$Main/ModeContainer/CanvasLayer2/btnPlayFast.visible = true
-	$Main/ModeContainer/CanvasLayer3/btnCave.visible = true
+	$Main/ModeContainer/btnPlay.visible = true
+	$Main/ModeContainer/btnPlayFast.visible = true
+	$Main/ModeContainer/btnCave.visible = true
 	$Splash.visible = false
+
+func resetGlobals():
+	GLOBALS.enemys = 0
+	GLOBALS.health1 = 100
+	GLOBALS.health2 = 100
+	GLOBALS.endurance1 = 100
+	GLOBALS.endurance2 = 100
+	GLOBALS.players = 0

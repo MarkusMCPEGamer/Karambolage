@@ -1,4 +1,1 @@
----
-name: No template
 
----

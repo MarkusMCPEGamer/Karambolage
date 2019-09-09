@@ -1,39 +1,38 @@
 extends Node
 
-# warning-ignore:unused_class_variable
-var playerPos
-
-# warning-ignore:unused_class_variable
 var countDown = false
 
-# warning-ignore:unused_class_variable
 var enemys = 0
 
-# warning-ignore:unused_class_variable
 var cave = true
 
-# warning-ignore:unused_class_variable
-var enemysInCollision = 0
+var enemysInCollision1 = 0
+var enemysInCollision2 = 0
 
-# warning-ignore:unused_class_variable
 var fast = false
 
-# warning-ignore:unused_class_variable
 var splashDone = false
 
-# warning-ignore:unused_class_variable
 var score = 0
 
-# warning-ignore:unused_class_variable
-var health = 100
+var health1 = 100
+var health2 = 100
+var endurance1 = 100
+var endurance2 = 100
+var enduranceUsing = false
 
-var colorChanged = false
+var powerupType
+
+var players = 0
 
 #settings
-# warning-ignore:unused_class_variable
+
 var closeConfirmation = true
 
-# warning-ignore:unused_class_variable
 var powerupPos = Vector2()
-
 var popupShown = false
+
+#inventory
+
+var itemSlot1 = ""
+var itemSlot2 = ""
